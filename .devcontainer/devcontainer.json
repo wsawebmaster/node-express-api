@@ -1,0 +1,22 @@
+{
+  "name": "Node.js & TypeScript Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+  "features": {},
+  "forwardPorts": [3333],
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "GitHub.copilot"
+      ]
+    }
+  },
+  "mounts": [
+    "source=/home/wsawebmaster/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached",
+    "source=/home/wsawebmaster/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+  ]
+}
