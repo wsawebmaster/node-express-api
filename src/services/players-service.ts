@@ -27,15 +27,23 @@ export const getPlayerByIdService = async (id: number) => {
   return response;
 };
 
-export const createPlayerService = async (player: PlayerModel)=> {
+export const createPlayerService = async (player: PlayerModel) => {
   let response = null;
 
   // verifica se está vazio
-  if(Object.keys(player).length !== 0) {
+  if (Object.keys(player).length !== 0) {
     await PlayerRepository.insertPlayer(player);
     response = httpResponse.created(player);
   } else {
     response = httpResponse.badRequest();
   }
   return response;
-}
+};
+
+export const deletePlayerService = async (id: number) => {
+  let response = null;
+  await PlayerRepository.deleteOnePlayer(id);
+
+  response = httpResponse.ok({ message: "Player deleted successfully" });
+  return response;
+};
