@@ -10,6 +10,14 @@ API desenvolvida com Node.js e Express para gerenciar jogadores e clubes da Cham
 - **GitHub**: Plataforma para armazenar seus códigos desenvolvidos.
 - **Node.js**: Ambiente de execução de códigos JavaScript assíncrona orientada a eventos para construir aplicações de rede escaláveis.
 
+### 🛠️ Tecnologias Utilizadas
+
+- **[TypeScript](https://www.typescriptlang.org/):** Linguagem de programação utilizada para o desenvolvimento do projeto.
+- **[Tsup](https://github.com/egoist/tsup):** Ferramenta de construção e empacotamento para projetos TypeScript.
+- **[Tsx](https://github.com/egoist/tsx):** Compilador TypeScript que suporta a construção de projetos.
+- **[Node.js](https://nodejs.org/):** Ambiente de execução JavaScript que permite executar código JavaScript do lado do servidor.
+- **[@types/node](https://www.npmjs.com/package/@types/node):** Pacote de definições de tipos para Node.js para auxiliar no desenvolvimento com TypeScript.
+
 ### 🔥 Como Utilizar
 
 1. Clone este repositório:
@@ -83,13 +91,49 @@ GET /api/clubs
 
 > Todos os endpoints retornam respostas padronizadas conforme o modelo `HttpResponse`.
 
-### 🛠️ Tecnologias Utilizadas
+    export interface HttpResponse {
+        statusCode: number;
+        body: any;
+    }
 
-- **[TypeScript](https://www.typescriptlang.org/):** Linguagem de programação utilizada para o desenvolvimento do projeto.
-- **[Tsup](https://github.com/egoist/tsup):** Ferramenta de construção e empacotamento para projetos TypeScript.
-- **[Tsx](https://github.com/egoist/tsx):** Compilador TypeScript que suporta a construção de projetos.
-- **[Node.js](https://nodejs.org/):** Ambiente de execução JavaScript que permite executar código JavaScript do lado do servidor.
-- **[@types/node](https://www.npmjs.com/package/@types/node):** Pacote de definições de tipos para Node.js para auxiliar no desenvolvimento com TypeScript.
+
+### 🏗️ Arquitetura do Projeto
+
+A API segue uma arquitetura simples e organizada em camadas:
+
+```
+┌─────────────────────────────┐
+│         Cliente/API         │
+│(ex: Frontend, Insomnia...)  │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│        Express Router       │
+│  (/api/players, /api/clubs) │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│        Controllers          │
+│ players-controller.ts       │
+│ clubs-controller.ts         │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│         Models/Data         │
+│ players.ts, clubs.ts        │
+│ (dados em memória)          │
+└─────────────────────────────┘
+```
+
+- **Cliente/API:** Realiza requisições HTTP para os endpoints.
+- **Express Router:** Direciona as requisições para os controllers adequados.
+- **Controllers:** Processam a lógica de negócio e manipulam os dados.
+- **Models/Data:** Armazenam os dados dos jogadores e clubes em arquivos TypeScript, sem uso de banco de dados externo.
+
+
 
 ---
 ---
